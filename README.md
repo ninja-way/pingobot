@@ -1,1 +1,3 @@
 # pingobot
+
+Monitoring resources availability
