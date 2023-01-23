@@ -36,7 +36,7 @@ func main() {
 		}
 	}()
 
-	// Send jobs
+	// Send jobs every PingTimeout
 	go func() {
 		for {
 			for _, URL := range URLs {

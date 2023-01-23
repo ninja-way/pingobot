@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// Pool managed jobs and workers
 type Pool struct {
 	worker     *worker
 	workersNum int
@@ -28,6 +29,7 @@ func New(workersNum int, timeout time.Duration, result chan Result) *Pool {
 	}
 }
 
+// Start run specified count workers that handle URLs
 func (p *Pool) Start() {
 	for i := 1; i <= p.workersNum; i++ {
 		go func(i int) {
@@ -39,6 +41,7 @@ func (p *Pool) Start() {
 	}
 }
 
+// Push send job to jobs channel
 func (p *Pool) Push(job string) {
 	if p.stopped {
 		return
@@ -47,6 +50,8 @@ func (p *Pool) Push(job string) {
 	p.wg.Add(1)
 }
 
+// Stop close jobs channel for writing
+// and waits for the completion of the remaining jobs
 func (p *Pool) Stop() {
 	p.stopped = true
 	close(p.jobs)

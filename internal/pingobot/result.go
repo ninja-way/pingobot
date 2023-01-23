@@ -12,6 +12,7 @@ type Result struct {
 	Error        error
 }
 
+// String return result data in convenient format
 func (r Result) String() string {
 	if r.Error != nil {
 		return fmt.Sprintf("[ERROR] %s : %s", r.URL, r.Error.Error())
